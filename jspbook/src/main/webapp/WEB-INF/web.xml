@@ -5,5 +5,104 @@
                       https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
   version="6.0">
 
-  <display-name>Archetype Created Web Application</display-name>
+    <security-role>
+        <role-name>role1</role-name> <!--아이디-->
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>jspbook</web-resource-name> <!--소문자로-->
+            <url-pattern>/ch10/security02.jsp</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description></description>
+            <role-name>role1</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+    <form-login-config>
+    <form-login-page>/ch10/login.jsp</form-login-page>
+    <form-error-page>/ch10/login.failed.jsp</form-error-page>
+    </form-login-config>
+     </login-config>
+  
+
+  <error-page>
+  <exception-type>java.lang.Exception</exception-type>
+  <location>/ch11/exceptionType_error.jsp</location>
+  </error-page>
+
+
+<filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>true</param-value>
+        </init-param>
+</filter>
+<filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+<filter>
+        <filter-name>Filter02</filter-name>
+        <filter-class>ch12.com.filter.InitParamFilter</filter-class>
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <param-name>param2</param-name>
+            <param-value>1234</param-value>
+        </init-param>
+    </filter>
+<filter-mapping>
+        <filter-name>Filter02</filter-name>
+        <url-pattern>/ch12/filter02_process.jsp</url-pattern>
+</filter-mapping>
+
+
+<filter>
+        <filter-name>Filter02_2</filter-name>
+        <filter-class>ch12.com.filter.LogFileFilter</filter-class>
+        <init-param>
+            <param-name>filename</param-name>
+            <param-value>c:\\logs\\monitor.log</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter02_2</filter-name>
+        <url-pattern>/ch12/filter02_process.jsp</url-pattern>
+</filter-mapping>
+
+
+  
+<display-name>Archetype Created Web Application</display-name>
+ 
+<servlet>
+    <servlet-name>jsp</servlet-name>
+    <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+    <multipart-config>
+        <location>C:\upload</location> 
+        <max-file-size>20971520</max-file-size> 
+        <max-request-size>41943040</max-request-size> 
+        <file-size-threshold>0</file-size-threshold> 
+    </multipart-config>
+</servlet>
+<servlet-mapping>
+    <servlet-name>jsp</servlet-name>
+    <url-pattern>*.jsp</url-pattern>
+</servlet-mapping>
+
+
 </web-app>
