@@ -1,2 +1,3 @@
 dao\BookRepository.class
 dto\Book.class
+filter\LogFilter.class
