@@ -70,7 +70,7 @@
 
 
 String sql = "INSERT INTO book VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-
+    PreparedStatement pstmt = null;
     pstmt = conn.prepareStatement(sql);
     pstmt.setString(1, bookId);
     pstmt.setString(2, name);
