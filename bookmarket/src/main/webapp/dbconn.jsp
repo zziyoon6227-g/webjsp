@@ -8,7 +8,7 @@
         String user = "system";
         String password = "1234";
 
-        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Class.forName("oracle.jdbc.OracleDriver");
         conn = DriverManager.getConnection(url, user, password);
 
     } catch (SQLException ex) {

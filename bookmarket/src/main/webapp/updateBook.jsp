@@ -62,7 +62,7 @@
                         <input type="text" name="author" class="form-control" value='<%=rs.getString("b_author")%>'>
                     </div>
                 </div>
-                
+                 
                 <div class="mb-3 row">
                     <label class="col-sm-2">출판사</label>
                     <div class="col-sm-5">
@@ -73,7 +73,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2">출판일</label>
                     <div class="col-sm-5">
-                        <input type="text" name="releasedDate" class="form-control" value='<%=rs.getString("b_releasedDate")%>'>
+                        <input type="text" name="releasedDate" class="form-control" value='<%=rs.getString("b_releaseDate")%>'>
                     </div>
                 </div>
                 
