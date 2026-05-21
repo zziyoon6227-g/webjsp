@@ -4,6 +4,9 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="jakarta.servlet.http.*"%>
+<%@ page import="java.sql.*" %>
+<%@ include file="dbconn.jsp" %>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <%
@@ -46,7 +49,7 @@
     }
 
     // 6. 데이터베이스(Repository) 저장
-    BookRepository dao = BookRepository.getInstance();
+   /* BookRepository dao = BookRepository.getInstance();
 
     Book newBook = new Book();
     newBook.setBookId(bookId);
@@ -61,8 +64,37 @@
     newBook.setCondition(condition);
     newBook.setFilename(fileName); // 파일명 저장
 
-    dao.addBook(newBook);
+    dao.addBook(newBook);*/
 
+
+
+
+String sql = "INSERT INTO book VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
+    pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, bookId);
+    pstmt.setString(2, name);
+    pstmt.setInt(3, price);
+    pstmt.setString(4, author);
+    pstmt.setString(5, description);
+    pstmt.setString(6, publisher);
+    pstmt.setString(7, category);
+    pstmt.setLong(8, stock);
+    pstmt.setString(9, releaseDate);
+    pstmt.setString(10, condition);
+    pstmt.setString(11, fileName);
+    pstmt.executeUpdate();
+
+    if (pstmt != null)
+        pstmt.close();
+    if (conn != null)
+        conn.close();
+
+
+
+
+        
+        
     // 7. 성공 후 리다이렉트
     response.sendRedirect("books.jsp");
     %>
