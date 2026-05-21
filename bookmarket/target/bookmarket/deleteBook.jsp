@@ -2,6 +2,9 @@
 <%@ page import="java.sql.*" %>
 <%@ include file="dbconn.jsp" %>
 <%
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+
     String bookId=request.getParameter("id");
 
     String sql="SELECT * FROM book";
